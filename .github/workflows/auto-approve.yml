@@ -1,21 +1,25 @@
-name: Dependabot auto-approve
-on: pull_request
+# This file was generated using Kotlin DSL (.github/workflows/dependabot.main.kts).
+# If you want to modify the workflow, please change the Kotlin file and regenerate this YAML file.
+# Generated with https://github.com/typesafegithub/github-workflows-kt
 
+name: 'Dependabot auto-approve'
+on:
+  pull_request: {}
 permissions:
-  pull-requests: write
-
+  pull-requests: 'write'
 jobs:
   dependabot:
-    runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    runs-on: 'ubuntu-latest'
+    if: '${{ github.actor == ''dependabot[bot]'' }}'
     steps:
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v1.6.0
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Approve a PR
-        run: gh pr review --approve "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - id: 'step-0'
+      name: 'Dependabot metadata'
+      uses: 'dependabot/fetch-metadata@v2.2.0'
+      env:
+        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+    - id: 'step-1'
+      name: 'Approve a PR'
+      env:
+        PR_URL: '${{ github.event.pull_request.html_url }}'
+        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      run: 'gh pr review --approve "$PR_URL"'
